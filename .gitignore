@@ -1,0 +1,9 @@
+# Generated OS file
+.DS_Store
+
+# Visual Studio launcher and tasks configuration folder
+.vscode/
+
+# Excluding folders
+bin/
+obj/
