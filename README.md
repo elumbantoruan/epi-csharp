@@ -1,2 +1,2 @@
 # epi
-Source code for Element Programming Interviews (EPI) in C#.  This is only for learning purposes
+Source code for Elements of Programming Interviews (EPI) in C# .NET Core
