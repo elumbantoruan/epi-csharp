@@ -17,9 +17,22 @@ namespace _05._11_RectangleIntersection
         static void Main(string[] args)
         {
             Rectangle r1 = new Rectangle(x:20, y:10, width:50, height:30);
-            Rectangle r2 = new Rectangle(  40,    5,       10,         45/*45*/);
+            Rectangle r2 = new Rectangle(  40,    5,       10,         45);
             Rectangle intersection = IntersectRectangle(r1, r2);
             Console.WriteLine(intersection);
+            Debug.Assert(intersection.X == 40);
+            Debug.Assert(intersection.Y == 10);
+            Debug.Assert(intersection.Width == 10);
+            Debug.Assert(intersection.Height == 30);
+
+            Rectangle r3 = new Rectangle(60, 20, 10, 40 );
+            intersection = IntersectRectangle(r1, r3);
+            
+            Console.WriteLine(intersection);
+            Debug.Assert(intersection.X == 60);
+            Debug.Assert(intersection.Y == 20);
+            Debug.Assert(intersection.Width == 10);
+            Debug.Assert(intersection.Height == 20);
         }
 
         static Rectangle IntersectRectangle(Rectangle r1, Rectangle r2) {
