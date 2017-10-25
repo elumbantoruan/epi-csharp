@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace _15._04_ComputeLCA
 {
@@ -27,10 +28,17 @@ namespace _15._04_ComputeLCA
             int a = 3;
             int b = 17;
             Tree<int> lcaNode = FindLCA<int>(tree, a,b);
+            Debug.Assert(lcaNode.Value == 7);
+            Console.WriteLine(lcaNode.Value);
 
+            a = 13;
+            b = 53;
+            lcaNode = FindLCA<int>(tree, a,b);
+            Debug.Assert(lcaNode.Value == 19);            
             Console.WriteLine(lcaNode.Value);
         }
 
+        // The time complexity is O(h) where h is the height of tree
         static Tree<T> FindLCA<T>(Tree<T> root, int node1, int node2) where T : IComparable<T> {
             Tree<T> current = root;
             while (Convert.ToInt32(current.Value) < node1 || Convert.ToInt32(current.Value) > node2) {
