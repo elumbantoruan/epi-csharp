@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using _15._00_Tree;
 
 namespace _15._04_ComputeLCA
 {
@@ -50,35 +51,6 @@ namespace _15._04_ComputeLCA
                 }
             }
             return current;
-        }
-    }
-
-    public class Tree<T> where T : IComparable<T> {
-        public T Value { get; set; }
-        public Tree<T> Left {get;set; }
-        public Tree<T> Right { get; set; }
-        public Tree(T value)
-        {
-            Value = value;
-        }
-
-        public void Insert(T value) {
-            if (value.CompareTo(Value) < 0) {
-                if (Left == null) {
-                    Left = new Tree<T>(value);
-                }
-                else {
-                    Left.Insert(value);
-                }
-            }
-            else {
-                if (Right == null) {
-                    Right = new Tree<T>(value);
-                }
-                else {
-                    Right.Insert(value);
-                }
-            }
         }
     }
 }
