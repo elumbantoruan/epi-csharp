@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Diagnostics;
+using _15._00_Tree;
 
 namespace _15._01_ValidateBinarySearchTree
 {
@@ -15,6 +17,9 @@ namespace _15._01_ValidateBinarySearchTree
 
             Console.WriteLine(isBst);
 
+            Debug.Assert(isBst == false);
+            
+
             tree = new Tree<int>(20);
             tree.Left = new Tree<int>(10);
             tree.Left.Left = new Tree<int>(5);
@@ -23,6 +28,8 @@ namespace _15._01_ValidateBinarySearchTree
             isBst = IsBST(tree);
 
             Console.WriteLine(isBst);
+
+            Debug.Assert(isBst == true);
         }
 
         static bool IsBST(Tree<int> root) {
@@ -39,35 +46,6 @@ namespace _15._01_ValidateBinarySearchTree
             }
             return IsBST(root.Left, minValue, root.Value) &&
                    IsBST(root.Right, root.Value, maxValue);
-        }
-    }
-
-    public class Tree<T> where T : IComparable<T> {
-        public T Value { get; set; }
-        public Tree<T> Left {get;set; }
-        public Tree<T> Right { get; set; }
-        public Tree(T value)
-        {
-            Value = value;
-        }
-
-        public void Insert(T value) {
-            if (value.CompareTo(Value) < 0) {
-                if (Left == null) {
-                    Left = new Tree<T>(value);
-                }
-                else {
-                    Left.Insert(value);
-                }
-            }
-            else {
-                if (Right == null) {
-                    Right = new Tree<T>(value);
-                }
-                else {
-                    Right.Insert(value);
-                }
-            }
         }
     }
 }

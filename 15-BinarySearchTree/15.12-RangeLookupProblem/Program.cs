@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using _15._00_Tree;
 
 namespace _15._12_RangeLookupProblem
 {
@@ -25,18 +27,16 @@ namespace _15._12_RangeLookupProblem
             tree.Insert(47);
             tree.Insert(53);
 
-            int a = 3;
-            int b = 17;
-            Tree<int> lcaNode = FindLCA<int>(tree, a,b);
-
-            Console.WriteLine(lcaNode.Value);
             Console.WriteLine();
             List<int> list = RangeLookup(tree, new Interval<int> { Left = 16, Right = 31});
             foreach (var item in list)
             {
                 Console.Write($"{item} ");
             }
-
+            List<int> expected = new List<int>{17,19,23,29,31};
+            for (int i = 0; i < expected.Count; i++) {
+                Debug.Assert(expected[i] == list[i]);
+            }
         }
 
         static List<T> RangeLookup<T>(Tree<T> root, Interval<T> interval) where T : IComparable<T> {
@@ -61,52 +61,10 @@ namespace _15._12_RangeLookupProblem
                 RangeLookup(root.Left, interval, list);
             }
         }
-
-        static Tree<T> FindLCA<T>(Tree<T> root, int node1, int node2) where T : IComparable<T> {
-            Tree<T> current = root;
-            while (Convert.ToInt32(current.Value) < node1 || Convert.ToInt32(current.Value) > node2) {
-                while (Convert.ToInt32(current.Value) < node1 ) {
-                    current = current.Right;
-                }
-                while (Convert.ToInt32(current.Value) > node2 ) {
-                    current = current.Left;
-                }
-            }
-            return current;
-        }
     }
 
     public class Interval<T> where T : IComparable<T> {
         public T Left { get; set; }
         public T Right { get; set; }
-    }
-
-    public class Tree<T> where T : IComparable<T> {
-        public T Value { get; set; }
-        public Tree<T> Left {get;set; }
-        public Tree<T> Right { get; set; }
-        public Tree(T value)
-        {
-            Value = value;
-        }
-
-        public void Insert(T value) {
-            if (value.CompareTo(Value) < 0) {
-                if (Left == null) {
-                    Left = new Tree<T>(value);
-                }
-                else {
-                    Left.Insert(value);
-                }
-            }
-            else {
-                if (Right == null) {
-                    Right = new Tree<T>(value);
-                }
-                else {
-                    Right.Insert(value);
-                }
-            }
-        }
     }
 }

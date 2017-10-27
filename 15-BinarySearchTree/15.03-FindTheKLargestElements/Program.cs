@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using _15._00_Tree;
 
 namespace _15._03_FindTheKLargestElements
 {
@@ -30,6 +32,10 @@ namespace _15._03_FindTheKLargestElements
             {
                 Console.Write($"{item} ");
             }
+            List<int> expected = new List<int> {53,47,43};
+            for (int i = 0; i < expected.Count; i++) {
+                Debug.Assert(expected[i] == results[i]);
+            }
         }
 
         static List<int> FindTheKLargestElements(Tree<int> tree, int k) {
@@ -45,35 +51,6 @@ namespace _15._03_FindTheKLargestElements
                     list.Add(tree.Value);
                     FindTheKLargestElements(tree.Left, k, list);
                 }    
-            }
-        }
-    }
-
-    public class Tree<T> where T : IComparable<T> {
-        public T Value { get; set; }
-        public Tree<T> Left {get;set; }
-        public Tree<T> Right { get; set; }
-        public Tree(T value)
-        {
-            Value = value;
-        }
-
-        public void Insert(T value) {
-            if (value.CompareTo(Value) < 0) {
-                if (Left == null) {
-                    Left = new Tree<T>(value);
-                }
-                else {
-                    Left.Insert(value);
-                }
-            }
-            else {
-                if (Right == null) {
-                    Right = new Tree<T>(value);
-                }
-                else {
-                    Right.Insert(value);
-                }
             }
         }
     }
