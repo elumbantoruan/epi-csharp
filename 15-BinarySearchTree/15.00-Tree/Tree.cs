@@ -44,6 +44,17 @@ namespace _15._00_Tree
             }
         }
 
+        public void PostOrder() {
+            
+            if (Left != null) {
+                Left.PreOrder();
+            }
+            if (Right != null) {
+                Right.PreOrder();
+            }
+            Console.Write($"{Value} ");
+        }
+
         public List<T> ToPreOrderList() {
             List<T> list = new List<T>();
             ToPreOrderList(list);
