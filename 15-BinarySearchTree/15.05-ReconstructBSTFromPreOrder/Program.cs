@@ -15,8 +15,18 @@ namespace _15._05_ReconstructBSTFromPreOrder
             };
             Tree<int> tree = BuildTree(preOrder);
             Console.WriteLine();
+            Console.WriteLine("PreOrder");            
             tree.PreOrder();
+
+            Console.WriteLine();
+            Console.WriteLine("InOrder");
+            tree.InOrder();
+
             Console.WriteLine();            
+            Console.WriteLine("PostOrder");
+            tree.PostOrder();
+            Console.WriteLine();
+
             List<int> resultsOfPreOrder = tree.ToPreOrderList();
             for (int i = 0; i < resultsOfPreOrder.Count; i++)
             {
